@@ -1,0 +1,6 @@
+ID,Title,Author,Quantity,Category,ISBN,Publisher,Year,CoverPath
+1,Clean Code,Robert C Martin,2,Programming,9780132350884,Prentice Hall,1988,/Users/keithbenedictfernandez/NetBeansProjects/BookInventoryFinal_DDL/covers/1784278737039_The clean code.png
+2,Effective Java,Joshua Bloch,4,,9780134685991,Addison-Wesley,2018,/Users/keithbenedictfernandez/NetBeansProjects/BookInventoryFinal_DDL/covers/1784278841485_Screenshot 2026-07-17 at 4.54.47 PM.png
+3,Head First SQL,Lynn Beighley,12,Database,9781260084504,O'Reilly Media,2007,/Users/keithbenedictfernandez/NetBeansProjects/BookInventoryFinal_DDL/covers/1784278984431_Screenshot 2026-07-17 at 4.55.49 PM.png
+4,The Alchemist,Paulo Coelho,12,Fiction,9780062315007,HarperOne,2014,/Users/keithbenedictfernandez/NetBeansProjects/BookInventoryFinal_DDL/covers/1784279027994_Screenshot 2026-07-17 at 4.56.18 PM.png
+5,Atomic Habits,James Clear,21,Self Help,9780735211292,Avery,2018,/Users/keithbenedictfernandez/NetBeansProjects/BookInventoryFinal_DDL/covers/1784279084947_Screenshot 2026-07-17 at 4.56.41 PM.png

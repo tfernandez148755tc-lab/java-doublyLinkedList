@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Pos?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="bookinventoryfinal_ddl.MainController"
+            stylesheets="@style.css">
+
+    <!-- ========================= -->
+    <!-- LEFT SIDEBAR -->
+    <!-- ========================= -->
+
+    <left>
+
+        <VBox fx:id="leftNav"
+              prefWidth="250"
+              alignment="TOP_CENTER"
+              spacing="15"
+              styleClass="sidebar">
+
+            <padding>
+                <Insets top="25" right="20" bottom="25" left="20"/>
+            </padding>
+
+            <ImageView fitWidth="90"
+                       fitHeight="90"
+                       preserveRatio="true">
+                <image>
+                    <Image url="@images/book_logo.png"/>
+                </image>
+            </ImageView>
+
+            <Label text="BOOK"
+                   styleClass="sidebar-title"/>
+
+            <Label text="INVENTORY SYSTEM"
+                   styleClass="sidebar-subtitle"/>
+
+            <Separator/>
+
+            <Button fx:id="btnNavDashboard"
+                    text="🏠 Dashboard"
+                    onAction="#onNavDashboard"
+                    styleClass="menu-active"/>
+
+            <Button fx:id="btnNavAdd"
+                    text="➕ Add Book"
+                    onAction="#onNavAdd"
+                    styleClass="menu-button"/>
+
+            <Button fx:id="btnNavSearch"
+                    text="🔍 Search Book"
+                    onAction="#onNavSearch"
+                    styleClass="menu-button"/>
+
+            <Button fx:id="btnNavDelete"
+                    text="🗑 Delete Book"
+                    onAction="#onNavDelete"
+                    styleClass="menu-button"/>
+
+            <Button fx:id="btnNavViewAll"
+                    text="📚 View All Books"
+                    onAction="#onNavViewAll"
+                    styleClass="menu-button"/>
+
+            <Button fx:id="btnNavAbout"
+                    text="ℹ About"
+                    onAction="#onNavAbout"
+                    styleClass="menu-button"/>
+
+            <Pane VBox.vgrow="ALWAYS"/>
+
+            <Label text="DATE"
+                   styleClass="date-title"/>
+
+            <Label fx:id="lblDate"
+                   styleClass="date-text"/>
+
+            <Label fx:id="lblTime"
+                   styleClass="date-text"/>
+
+        </VBox>
+
+    </left>
+
+    <!-- ========================= -->
+    <!-- CENTER -->
+    <!-- ========================= -->
+
+    <center>
+
+        <StackPane fx:id="centerStack"
+                   style="-fx-padding:25;">
+
+            <!-- DASHBOARD -->
+
+            <VBox fx:id="dashboardPane"
+                  spacing="20">
+
+                <Label text="BOOK INVENTORY SYSTEM"
+                       styleClass="title"/>
+
+                <Label text="Manage your library with a Doubly Linked List."
+                       styleClass="subtitle"/>
+
+                <HBox spacing="20">
+
+                    <VBox spacing="20"
+                          HBox.hgrow="ALWAYS"
+                          styleClass="card">
+
+                        <Label text="CURRENT BOOK"
+                               styleClass="section-title"/>
+
+                        <HBox spacing="20">
+
+                            <ImageView fx:id="imgCover"
+                                       fitWidth="220"
+                                       fitHeight="320"
+                                       preserveRatio="true"
+                                       styleClass="book-cover"/>
+
+                            <VBox spacing="12">
+
+                                <Label fx:id="displayTitle"
+                                       styleClass="book-title"/>
+
+                                <Label fx:id="displayAuthor"
+                                       styleClass="book-info"/>
+
+                                <Label fx:id="displayGenre"
+                                       styleClass="book-info"/>
+
+                                <Label fx:id="displayISBN"
+                                       styleClass="book-info"/>
+
+                                <Label fx:id="displayQuantity"
+                                       styleClass="book-info"/>
+
+                                <Label fx:id="displayPublisher"
+                                       styleClass="book-info"/>
+
+                                <Label fx:id="displayYear"
+                                       styleClass="book-info"/>
+
+                            </VBox>
+
+                        </HBox>
+
+                    </VBox>
+
+                    <!-- Navigation -->
+
+                    <VBox prefWidth="240"
+                          alignment="CENTER"
+                          spacing="20"
+                          styleClass="navigation-card">
+
+                        <Label text="NAVIGATION"
+                               styleClass="section-title"/>
+
+                        <Button fx:id="btnNext"
+                                text="DISPLAY NEXT BOOK →"
+                                onAction="#onNext"
+                                styleClass="btn-brown"/>
+
+                        <Label fx:id="lblPosition"
+                               styleClass="position-label"/>
+
+                        <Button fx:id="btnPrev"
+                                text="← DISPLAY PREVIOUS BOOK"
+                                onAction="#onPrev"
+                                styleClass="btn-red"/>
+
+                    </VBox>
+
+                </HBox>
+
+                <!-- Book Preview -->
+
+                <VBox spacing="10">
+
+                    <Label text="BOOK PREVIEW"
+                           styleClass="section-title"/>
+
+                    <ScrollPane fitToHeight="true"
+                                fitToWidth="true"
+                                hbarPolicy="AS_NEEDED"
+                                vbarPolicy="NEVER">
+
+                        <HBox fx:id="thumbContainer"
+                              spacing="15"
+                              alignment="CENTER_LEFT"
+                              style="-fx-padding:10;"/>
+
+                    </ScrollPane>
+
+                </VBox>
+
+                <!-- Status -->
+
+                <HBox alignment="CENTER_LEFT"
+                      spacing="15"
+                      styleClass="status-bar">
+
+                    <Label text="Status:"/>
+
+                    <Label fx:id="lblStatus"
+                           text="Ready"
+                           styleClass="status-ready"/>
+
+                    <Pane HBox.hgrow="ALWAYS"/>
+
+                    <Label fx:id="lblTotalBooks"
+                           text="TOTAL BOOKS : 0"/>
+
+                </HBox>
+
+            </VBox>            <!-- ======================================== -->
+            <!-- ADD BOOK PAGE -->
+            <!-- ======================================== -->
+
+            <ScrollPane fx:id="addPane"
+                        visible="false"
+                        managed="false"
+                        fitToWidth="true">
+
+                <VBox spacing="20"
+                      styleClass="card"
+                      style="-fx-padding:30;">
+
+                    <Label text="ADD NEW BOOK"
+                           styleClass="title"/>
+
+                    <GridPane hgap="20"
+                              vgap="18">
+
+                        <columnConstraints>
+                            <ColumnConstraints percentWidth="20"/>
+                            <ColumnConstraints percentWidth="30"/>
+                            <ColumnConstraints percentWidth="20"/>
+                            <ColumnConstraints percentWidth="30"/>
+                        </columnConstraints>
+
+                        <Label text="Book ID"
+                               GridPane.columnIndex="0"
+                               GridPane.rowIndex="0"/>
+
+                        <TextField fx:id="txtID"
+                                   promptText="Enter Book ID"
+                                   GridPane.columnIndex="1"
+                                   GridPane.rowIndex="0"/>
+
+                        <Label text="Title"
+                               GridPane.columnIndex="2"
+                               GridPane.rowIndex="0"/>
+
+                        <TextField fx:id="txtTitle"
+                                   promptText="Book Title"
+                                   GridPane.columnIndex="3"
+                                   GridPane.rowIndex="0"/>
+
+                        <Label text="Author"
+                               GridPane.columnIndex="0"
+                               GridPane.rowIndex="1"/>
+
+                        <TextField fx:id="txtAuthor"
+                                   promptText="Author Name"
+                                   GridPane.columnIndex="1"
+                                   GridPane.rowIndex="1"/>
+
+                        <Label text="Quantity"
+                               GridPane.columnIndex="2"
+                               GridPane.rowIndex="1"/>
+
+                        <TextField fx:id="txtQuantity"
+                                   promptText="0"
+                                   GridPane.columnIndex="3"
+                                   GridPane.rowIndex="1"/>
+
+                        <Label text="Category"
+                               GridPane.columnIndex="0"
+                               GridPane.rowIndex="2"/>
+
+                        <ComboBox fx:id="comboCategory"
+                                  promptText="Select Category"
+                                  GridPane.columnIndex="1"
+                                  GridPane.rowIndex="2"/>
+
+                        <Label text="ISBN"
+                               GridPane.columnIndex="2"
+                               GridPane.rowIndex="2"/>
+
+                        <TextField fx:id="txtISBN"
+                                   promptText="ISBN"
+                                   GridPane.columnIndex="3"
+                                   GridPane.rowIndex="2"/>
+
+                        <Label text="Publisher"
+                               GridPane.columnIndex="0"
+                               GridPane.rowIndex="3"/>
+
+                        <TextField fx:id="txtPublisher"
+                                   promptText="Publisher"
+                                   GridPane.columnIndex="1"
+                                   GridPane.rowIndex="3"/>
+
+                        <Label text="Year"
+                               GridPane.columnIndex="2"
+                               GridPane.rowIndex="3"/>
+
+                        <TextField fx:id="txtYear"
+                                   promptText="2026"
+                                   GridPane.columnIndex="3"
+                                   GridPane.rowIndex="3"/>
+
+                        <Label text="Cover Image"
+                               GridPane.columnIndex="0"
+                               GridPane.rowIndex="4"/>
+
+                        <HBox spacing="10"
+                              GridPane.columnIndex="1"
+                              GridPane.columnSpan="3"
+                              GridPane.rowIndex="4">
+
+                            <TextField fx:id="txtCoverPath"
+                                       editable="false"
+                                       promptText="Choose cover image"
+                                       HBox.hgrow="ALWAYS"/>
+
+                            <Button fx:id="btnChooseCover"
+                                    text="Choose Cover"
+                                    onAction="#chooseCover"
+                                    styleClass="btn-brown"/>
+
+                        </HBox>
+
+                    </GridPane>
+
+                    <!-- Live Cover Preview -->
+
+                    <VBox alignment="CENTER"
+                          spacing="10">
+
+                        <Label text="Cover Preview"
+                               styleClass="section-title"/>
+
+                        <ImageView fx:id="imgAddCover"
+                                   fitWidth="180"
+                                   fitHeight="250"
+                                   preserveRatio="true"
+                                   styleClass="book-cover"/>
+
+                    </VBox>
+
+                    <HBox alignment="CENTER_RIGHT"
+                          spacing="15">
+
+                        <Button text="Clear"
+                                onAction="#clearAddFields"
+                                styleClass="btn-orange"/>
+
+                        <Button text="Add Book"
+                                onAction="#addBook"
+                                styleClass="btn-green"/>
+
+                    </HBox>
+
+                    <Label fx:id="addStatus"
+                           styleClass="status-ready"/>
+
+                </VBox>
+
+            </ScrollPane>
+
+            <!-- ======================================== -->
+            <!-- SEARCH PAGE -->
+            <!-- ======================================== -->
+
+            <VBox fx:id="searchPane"
+                  visible="false"
+                  managed="false"
+                  spacing="20"
+                  alignment="TOP_CENTER">
+
+                <Label text="SEARCH BOOK"
+                       styleClass="title"/>
+
+                <Label text="Search by Book ID or Title"
+                       styleClass="subtitle"/>
+
+                <HBox spacing="10"
+                      alignment="CENTER">
+
+                    <TextField fx:id="txtSearchMain"
+                               promptText="Book ID or Title"
+                               HBox.hgrow="ALWAYS"/>
+
+                    <Button text="Search"
+                            onAction="#searchBookFromMain"
+                            styleClass="btn-green"/>
+
+                </HBox>
+
+                <Label fx:id="searchStatus"
+                       styleClass="status-ready"/>
+
+            </VBox>
+
+            <!-- ======================================== -->
+            <!-- DELETE PAGE -->
+            <!-- ======================================== -->
+
+            <VBox fx:id="deletePane"
+                  visible="false"
+                  managed="false"
+                  spacing="20"
+                  alignment="TOP_CENTER">
+
+                <Label text="DELETE BOOK"
+                       styleClass="title"/>
+
+                <Label text="Delete by Book ID"
+                       styleClass="subtitle"/>
+
+                <HBox spacing="10"
+                      alignment="CENTER">
+
+                    <TextField fx:id="txtDeleteMain"
+                               promptText="Book ID"/>
+
+                    <Button text="Delete"
+                            onAction="#deleteBookFromMain"
+                            styleClass="btn-red"/>
+
+                </HBox>
+
+                <Label fx:id="deleteStatus"
+                       styleClass="status-ready"/>
+
+            </VBox>            <!-- ======================================== -->
+            <!-- VIEW ALL BOOKS PAGE -->
+            <!-- ======================================== -->
+
+            <VBox fx:id="viewAllPane"
+                  visible="false"
+                  managed="false"
+                  spacing="20">
+
+                <Label text="BOOK INVENTORY"
+                       styleClass="title"/>
+
+                <Label text="Complete List of Books"
+                       styleClass="subtitle"/>
+
+                <TableView fx:id="tableAllBooks"
+                           VBox.vgrow="ALWAYS">
+
+                    <columns>
+
+                        <TableColumn fx:id="colAllID"
+                                     text="ID"
+                                     prefWidth="80"/>
+
+                        <TableColumn fx:id="colAllTitle"
+                                     text="Title"
+                                     prefWidth="250"/>
+
+                        <TableColumn fx:id="colAllAuthor"
+                                     text="Author"
+                                     prefWidth="180"/>
+
+                        <TableColumn fx:id="colAllQty"
+                                     text="Quantity"
+                                     prefWidth="100"/>
+
+                        <TableColumn fx:id="colAllCategory"
+                                     text="Category"
+                                     prefWidth="180"/>
+
+                    </columns>
+
+                </TableView>
+
+            </VBox>
+
+            <!-- ======================================== -->
+            <!-- ABOUT PAGE -->
+            <!-- ======================================== -->
+
+            <VBox fx:id="aboutPane"
+                  visible="false"
+                  managed="false"
+                  alignment="CENTER"
+                  spacing="20">
+
+                <Label text="BOOK INVENTORY SYSTEM"
+                       styleClass="title"/>
+
+                <Label text="Version 1.0"
+                       styleClass="subtitle"/>
+
+                <Separator/>
+
+                <Label
+                    wrapText="true"
+                    maxWidth="700"
+                    textAlignment="CENTER"
+                    styleClass="book-info"
+                    text="Book Inventory System is a JavaFX desktop application that demonstrates the use of a Doubly Linked List data structure for managing books. The application allows users to add, search, delete, browse, and save books automatically using CSV storage."/>
+
+                <Label text="Features"
+                       styleClass="section-title"/>
+
+                <VBox spacing="8"
+                      alignment="CENTER_LEFT"
+                      maxWidth="500">
+
+                    <Label text="✔ Add New Books"/>
+
+                    <Label text="✔ Search Books"/>
+
+                    <Label text="✔ Delete Books"/>
+
+                    <Label text="✔ Browse Books Forward and Backward"/>
+
+                    <Label text="✔ Cover Image Preview"/>
+
+                    <Label text="✔ CSV Auto Save and Auto Load"/>
+
+                    <Label text="✔ Doubly Linked List Implementation"/>
+
+                </VBox>
+
+                <Separator/>
+
+                <Label text="Developed by BSIT Students"
+                       style="-fx-font-size:16px;-fx-font-weight:bold;"/>
+
+                <Label text="2026"
+                       styleClass="subtitle"/>
+
+            </VBox>
+
+        </StackPane>
+
+    </center>
+
+</BorderPane>

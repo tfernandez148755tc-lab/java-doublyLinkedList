@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="bookinventoryfinal_ddl.EditBookController"
+      spacing="10" alignment="TOP_LEFT" style="-fx-padding:12;">
+    <Label text="Edit Book" style="-fx-font-size:16px; -fx-font-weight:bold;"/>
+    <GridPane hgap="8" vgap="8">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="30"/>
+            <ColumnConstraints percentWidth="70"/>
+        </columnConstraints>
+
+        <Label text="ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtID" GridPane.rowIndex="0" GridPane.columnIndex="1" editable="false"/>
+
+        <Label text="Title:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtTitle" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <Label text="Author:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtAuthor" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+        <Label text="Quantity:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtQuantity" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+        <Label text="Category:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtCategory" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+        <Label text="ISBN:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtISBN" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+        <Label text="Publisher:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtPublisher" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+
+        <Label text="Year:" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtYear" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+
+        <Label text="Cover Path:" GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+        <HBox spacing="6" GridPane.rowIndex="8" GridPane.columnIndex="1">
+            <TextField fx:id="txtCoverPath" HBox.hgrow="ALWAYS"/>
+            <Button fx:id="btnChooseCoverEdit" text="Choose Cover" onAction="#chooseCoverInDialog"/>
+        </HBox>
+    </GridPane>
+
+    <HBox spacing="8" alignment="CENTER_RIGHT">
+        <Button text="Cancel" onAction="#onCancel"/>
+        <Button text="Save" onAction="#onSave"/>
+    </HBox>
+</VBox>
